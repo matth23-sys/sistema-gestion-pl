@@ -1,0 +1,486 @@
+:root {
+    --navy: #071b33;
+    --navy-light: #0d294a;
+    --navy-hover: #12375f;
+
+    --gold: #c7a33a;
+    --gold-light: #ddc36e;
+
+    --white: #ffffff;
+
+    --background: #f4f6f9;
+    --surface: #ffffff;
+
+    --border: #e3e8ef;
+
+    --text: #172033;
+    --text-muted: #697386;
+
+    --sidebar-width: 270px;
+
+    --radius: 10px;
+
+    --shadow:
+        0 2px 8px rgba(7, 27, 51, 0.06);
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+}
+
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: var(--sidebar-width);
+
+    background: var(--navy);
+    color: var(--white);
+
+    overflow-y: auto;
+
+    z-index: 1000;
+
+    transition: transform 0.25s ease;
+}
+
+
+.sidebar-brand {
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 20px 22px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.brand-mark {
+    width: 43px;
+    height: 43px;
+
+    flex: 0 0 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--gold);
+
+    color: var(--gold);
+
+    font-size: 14px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+
+.brand-text strong {
+    font-size: 14px;
+    letter-spacing: 0.8px;
+}
+
+
+.brand-text span {
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.62);
+}
+
+
+.sidebar-nav {
+    padding: 18px 14px 30px;
+}
+
+
+.nav-label {
+    margin:
+        23px
+        12px
+        8px;
+
+    color: rgba(255, 255, 255, 0.38);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+}
+
+
+.nav-item {
+    min-height: 43px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 14px;
+
+    margin: 3px 0;
+
+    border-radius: 7px;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 14px;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+.nav-item:hover {
+    background: var(--navy-hover);
+    color: var(--white);
+}
+
+
+.nav-item.active {
+    background:
+        rgba(199, 163, 58, 0.13);
+
+    color: var(--gold-light);
+
+    border-left:
+        3px solid var(--gold);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+    min-height: 100vh;
+
+    margin-left: var(--sidebar-width);
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 15px 32px;
+
+    background: var(--surface);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.topbar h1 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.topbar p {
+    margin: 4px 0 0;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+}
+
+
+.menu-button {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--border);
+    border-radius: 7px;
+
+    background: var(--white);
+
+    cursor: pointer;
+}
+
+
+.topbar-user {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--navy);
+
+    color: var(--gold);
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+.user-information {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.user-information strong {
+    font-size: 13px;
+}
+
+
+.user-information span {
+    margin-top: 2px;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+    padding: 30px 32px 50px;
+}
+
+
+.page-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    padding: 24px;
+}
+
+
+.page-card h2 {
+    margin: 0 0 8px;
+
+    font-size: 18px;
+}
+
+
+.page-card p {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+.messages {
+    margin-bottom: 20px;
+}
+
+
+.message {
+    padding: 13px 16px;
+
+    background: var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-left:
+        4px solid var(--gold);
+
+    border-radius: 6px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+
+    .main {
+        margin-left: 0;
+    }
+
+
+    .menu-button {
+        display: block;
+    }
+
+
+    .topbar {
+        padding: 15px 20px;
+    }
+
+
+    .content {
+        padding: 22px 20px 40px;
+    }
+
+
+    .user-information {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .topbar {
+        min-height: 76px;
+    }
+
+
+    .topbar p {
+        display: none;
+    }
+
+
+    .content {
+        padding:
+            18px
+            14px
+            30px;
+    }
+
+}
+
+
+.logout-form {
+    margin: 0;
+}
+
+
+.logout-button {
+    width: 100%;
+
+    border: 0;
+
+    text-align: left;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+
+.logout-button:hover {
+    background:
+        rgba(255, 255, 255, 0.07);
+}

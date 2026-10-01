@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+            Pro Legacy Management
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/app.css' %}"
+    >
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">
+                PL
+            </div>
+
+            <div class="brand-text">
+                <strong>PRO LEGACY</strong>
+                <span>Management System</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/" class="nav-item active">
+                <span>Dashboard</span>
+            </a>
+
+            <div class="nav-label">
+                MANAGEMENT
+            </div>
+
+            <a href="#" class="nav-item">
+                <span>Clients</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>Estimates</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>Contracts</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>Projects</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>Invoices</span>
+            </a>
+
+
+            <div class="nav-label">
+                FINANCE
+            </div>
+
+            <a href="#" class="nav-item">
+                <span>Billing</span>
+            </a>
+
+
+            <div class="nav-label">
+                CUSTOMER
+            </div>
+
+            <a href="#" class="nav-item">
+                <span>Review Requests</span>
+            </a>
+
+
+            <div class="nav-label">
+                ADMINISTRATION
+            </div>
+
+            <a href="#" class="nav-item">
+                <span>Users</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>Roles & Permissions</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>Activity Log</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>Settings</span>
+            </a>
+
+            <form
+                method="post"
+                action="{% url 'logout' %}"
+                class="logout-form"
+            >
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="nav-item logout-button"
+                >
+                    Sign Out
+                </button>
+
+            </form>
+
+        </nav>
+
+    </aside>
+
+
+    <div class="main">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    type="button"
+                    aria-label="Toggle navigation"
+                >
+                    ☰
+                </button>
+
+                <div>
+                    <h1>
+                        {% block page_title %}
+                            Dashboard
+                        {% endblock %}
+                    </h1>
+
+                    <p>
+                        {% block page_subtitle %}
+                            Pro Legacy Corp Management System
+                        {% endblock %}
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="topbar-user">
+
+                {% if request.user.is_authenticated %}
+
+                    <div class="user-avatar">
+                        {{ request.user.first_name|first|default:"A" }}
+                    </div>
+
+                    <div class="user-information">
+
+                        <strong>
+                            {{ request.user.get_full_name|default:request.user.username }}
+                        </strong>
+
+                        <span>
+                            {{ request.user.email }}
+                        </span>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </header>
+
+
+        <main class="content">
+
+            {% if messages %}
+
+                <div class="messages">
+
+                    {% for message in messages %}
+
+                        <div class="message">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<script src="{% static 'js/app.js' %}"></script>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>
