@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class AccountsConfig(AppConfig):
+class ClientsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "apps.accounts"
-    verbose_name = "Accounts"
+    name = "apps.clients"
+    verbose_name = "Clients"
