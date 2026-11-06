@@ -38,7 +38,7 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    "apps.accounts.apps.AccountsConfig",
+    "apps.accounts",
     "apps.audit",
     "apps.billing",
     "apps.contracts",
