@@ -15,7 +15,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env(
     "SECRET_KEY",
-    default="unsafe-development-key",
+    default=None,
 )
 
 DEBUG = env.bool(
@@ -45,16 +45,17 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     "apps.accounts.apps.AccountsConfig",
-    "apps.audit",
-    "apps.billing",
-    "apps.contracts",
-    "apps.documents",
-    "apps.estimates",
-    "apps.invoices",
-    "apps.notifications",
-    "apps.projects",
-    "apps.reviews",
-    "apps.settings_app",
+    "apps.clients.apps.ClientsConfig",
+    "apps.audit.apps.AuditConfig",
+    "apps.billing.apps.BillingConfig",
+    "apps.contracts.apps.ContractsConfig",
+    "apps.documents.apps.DocumentsConfig",
+    "apps.estimates.apps.EstimatesConfig",
+    "apps.invoices.apps.InvoicesConfig",
+    "apps.notifications.apps.NotificationsConfig",
+    "apps.projects.apps.ProjectsConfig",
+    "apps.reviews.apps.ReviewsConfig",
+    "apps.settings_app.apps.SettingsAppConfig",
 ]
 
 
@@ -309,3 +310,32 @@ DEFAULT_FROM_EMAIL = env(
 # =========================================================
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Storage stays outside any public static/media URL.
+# Application views must explicitly authorize access to private documents.
+
+# Operational logs go to stdout so Docker can collect and rotate them.
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {
+            "format": "%(asctime)s %(levelname)s %(name)s %(message)s",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "standard",
+        },
+    },
+    "root": {"handlers": ["console"], "level": env("LOG_LEVEL", default="INFO")},
+    "loggers": {
+        "django.security": {"handlers": ["console"], "level": "WARNING", "propagate": False},
+    },
+}
+
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+}

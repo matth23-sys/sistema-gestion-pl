@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+!.env.production.example
 
 # Python
 __pycache__/
@@ -45,3 +46,10 @@ htmlcov/
 build/
 dist/
 *.egg-info/
+# Celery Beat generated state
+celerybeat-schedule*
+# Local storage and backup dumps
+storage/private/
+backups/
+*.dump
+*.sql.gz
